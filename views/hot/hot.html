@@ -1,0 +1,48 @@
+<div class="loader" ng-if="isLoading">
+	<div class="loader-inner pacman">
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	</div>
+</div>
+<h1 class="page-header">{{allHotMovies.title}}</h1>
+<div class="list">
+	<div class="media" ng-repeat="item in allHotMovies.subjects track by $index">
+	  <a class="media-left" href="#/subject/{{item.id}}">
+	    <img ng-src="{{item.images.medium}}">
+	  </a>
+	  <div class="media-body">
+	    <h4 class="media-heading">{{item.title}}
+	    	<span class="badge pull-right">{{item.average}}</span>
+	    </h4>
+	    <p>类型:
+			<strong ng-repeat="genre in item.genres">
+				{{genre}}<span ng-if="!$last">、</span>
+			</strong>
+	    </p>
+	    <p>导演:
+			<strong ng-repeat="director in item.directors">
+				{{director.name}}<span ng-if="!$last">、</span>
+			</strong>
+	    </p>
+	    <p>主演:
+			<strong ng-repeat="cast in item.casts">
+				{{cast.name}}<span ng-if="!$last">、</span>
+			</strong>
+	    </p>
+	  </div>
+	</div>	
+</div>
+
+<div>
+	总共{{allHotMovies.total}}条数据,共{{currentPage}}/{{totalPage}}页
+</div>
+
+<nav>
+  <ul class="pager">
+    <li class="previous" ng-class="{disabled:currentPage<=1}"><a href="javascript:void(0);" ng-click="previousPage(currentPage)">&larr; 上一页</a></li>
+    <li class="next" ng-class="{disabled:currentPage==totalPage}"><a ng-click="nextPage(currentPage)" href="javascript:void(0);">下一页 &rarr;</a></li>
+  </ul>
+</nav>
