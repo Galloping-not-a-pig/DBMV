@@ -28,14 +28,18 @@
       if(page == $scope.totalPage) {
         return;
       }
+    //判断 是否变为只读
       $scope.isLoading = true;
       var start = page*pageCount;
       movieServices.jsonp(getUrl, {start:start, count: pageCount}, function(result) {
         $scope.allHotMovies = result;
-        
+        //将状态变为false
         $scope.isLoading = false; 
+        //向上取整来确定页数
         $scope.totalPage = Math.ceil(result.total / pageCount);
+        //每次页码加一
         $scope.currentPage++;
+        //进行脏检查不然上面的原生js代码会延时生效
         $scope.$digest();
       });
     }

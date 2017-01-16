@@ -34,6 +34,16 @@
         controller: 'TopController',
         controllerAs: 'Top'
       })
+      .when("/search", {
+          templateUrl: 'views/search/search.html',
+          controller: 'SearchController',
+          controllerAs: 'search'
+        })
+        .when("/subject/:id", {
+          templateUrl: 'views/detail/detail.html',
+          controller: 'DetailController',
+          controllerAs: 'detail'
+        })
       .otherwise({
         redirectTo: '/hot'
       });
